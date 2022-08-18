@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import Welcome from "./Welcome";
 
-ReactDOM.render(<HelloWorld />, document.querySelector("main"));
+// ReactDOM.render(<Welcome />, document.querySelector("main"));
 
 
 fetch("/api/users/me")

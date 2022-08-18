@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import "./styles.css";
+import "../style.css";
 
 export default class RegisterForm extends Component {
     constructor(props) {
@@ -10,10 +10,9 @@ export default class RegisterForm extends Component {
         };
 
         this.onSubmit = this.onSubmit.bind(this);
-        
     }
 
-    onFormSubmit(event) {
+    onSubmit(event) {
         event.preventDefault();
 
         const formData = {
@@ -22,25 +21,24 @@ export default class RegisterForm extends Component {
             email: event.target.email.value,
             password: event.target.password.value,
         };
+
         console.log(formData);
         fetch("/api/users", {
             method: "post",
             body: JSON.stringify(formData),
-            headers: {}
-        }).then(response => response.json())
-            .then(data => {
-                if(data.error) {
+            headers: {},
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.error) {
                     console.log("/post", data.error);
                     return;
-                }
-                else {
-                    window.location.href ="/";
+                } else {
+                    window.location.href = "/";
                 }
             });
-        
     }
     render() {
-
         return (
             <form onSubmit={this.onSubmit}>
                 <input
