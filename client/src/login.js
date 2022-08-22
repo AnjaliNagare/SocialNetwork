@@ -3,35 +3,34 @@ import { Link } from "react-router-dom";
 
 import "../style.css";
 
-export default class RegisterForm extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             error: "",
         };
 
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
-    onSubmit(event) {
+    onFormSubmit(event) {
         event.preventDefault();
 
-        const formData = {
-            first_name: event.target.first_name.value,
-            last_name: event.target.last_name.value,
+        const loginData = {
             email: event.target.email.value,
             password: event.target.password.value,
         };
 
-        console.log(formData);
-        fetch("/api/users", {
+        console.log(loginData);
+        fetch("/api/login", {
             method: "post",
-            body: JSON.stringify(formData),
+            body: JSON.stringify(loginData),
             headers: {},
         })
             .then((response) => response.json())
             .then((data) => {
                 if (data.error) {
+                    this.setState({ error: "wrong credentials" });
                     console.log("/post", data.error);
                     return;
                 } else {
@@ -42,19 +41,7 @@ export default class RegisterForm extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    <input
-                        name="first_name"
-                        type="first_name"
-                        required
-                        placeholder="First Name"
-                    />
-                    <input
-                        name="last_name"
-                        type="last_name"
-                        required
-                        placeholder="last Name"
-                    />
+                <form onSubmit={this.onFormSubmit}>
                     <input
                         name="email"
                         type="email"
@@ -67,13 +54,11 @@ export default class RegisterForm extends Component {
                         required
                         placeholder="Password"
                     />
-                    <button>Register</button>
-
+                    <button>Log in</button>
                     {this.state.error && <p>{this.state.error}</p>}
                 </form>
-                <Link to="/login">Click here to Log in!</Link>
+                <Link to="/">Click here to Register!</Link>
             </div>
         );
     }
 }
-
