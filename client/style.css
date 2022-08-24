@@ -1,3 +1,32 @@
 body {
     background-color: ghostwhite;
+    
+    
 }
+
+img {
+    height:200px;
+    width: 200px;
+    border: 1px solid black;
+}
+
+header {
+    width:100%;
+    height:50px;
+    background-color: blueviolet;
+    color: white;
+}
+
+header Link{
+    float:left;
+    color:white;
+}
+
+header p{
+    float: right;
+}
+.profile-picture {
+    width: 200px;
+    height: 200px;
+}
+

@@ -24,11 +24,20 @@ app.use(
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 app.use(express.json());
 
-const { createUser, getUserById, login } = require("./db");
+const { Bucket, s3Upload } = require("./s3");
+const { uploader } = require("./uploader");
+
+const {
+    createUser,
+    getUserById,
+    login,
+    updateUserProfilePicture,
+    editBio,
+} = require("./db");
 
 app.get("/api/users/me", (request, response)=> {
     if (!request.session.user_id) {
-        response.json("null");
+        response.json(null);
         return;
     }
     getUserById(request.session.user_id).then((result) =>{
@@ -76,6 +85,38 @@ app.post("/api/login", (request, response) => {
 app.post("/logout",(request, response) => {
     request.session = null;
     response.json({message: "User Logout"});
+});
+
+app.post(
+    "/api/users/profile",
+    uploader.single("file"),
+    s3Upload,
+    (request, response) => {
+        const url = `https://s3.amazonaws.com/${Bucket}/${request.file.filename}`;
+        console.log('POST /upload', url);
+        updateUserProfilePicture({
+            user_id: request.session.user_id,
+            profile_picture_url: url,
+        }).then((user) => {
+            response.json(user);
+        })
+            .catch((error) => {
+                console.log("post/upload", error);
+                response.status(500).json({ error: "error uploading profile picture" });
+            });
+    }    
+);
+
+app.post("/api/bio", (request, response) => {
+    const user_id = request.session.user_id;
+    editBio(request.body.bio, user_id)
+        .then((userBio) => {
+            response.json(userBio);
+        }).catch((error) => {
+            console.log("post/editBio", error);
+            response.statusCode(500).json({message: "error editing bio"});
+        });
+    
 });
 
 app.get("*", function (req, res) {

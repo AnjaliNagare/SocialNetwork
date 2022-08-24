@@ -25,7 +25,7 @@ export default class Login extends Component {
         fetch("/api/login", {
             method: "post",
             body: JSON.stringify(loginData),
-            headers: {},
+            headers: { "Content-Type": "application/json" },
         })
             .then((response) => response.json())
             .then((data) => {

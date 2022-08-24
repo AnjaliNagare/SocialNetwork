@@ -53,10 +53,27 @@ function getUserByEmail(email) {
         .then((result) => result.rows[0]);
 }
 
+async function updateUserProfilePicture({ user_id, profile_picture_url }) {
+    const result = await db.query(
+        `
+    UPDATE users SET profile_picture_url = $1 WHERE id = $2 
+    RETURNING profile_picture_url`,
+        [profile_picture_url, user_id]
+    );
+    return  result.rows[0];
+}
+
+async function editBio(userBio, user_id) {
+    const result =  await db.query(`UPDATE users SET bio = $1 WHERE id=$2 RETURNING bio`,
+        [userBio, user_id]);
+    return result.rows[0];
+}
 
 module.exports = {
     createUser,
     getUserById,
     login,
+    updateUserProfilePicture,
+    editBio,
 };
 

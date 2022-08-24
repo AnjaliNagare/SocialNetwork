@@ -27,7 +27,7 @@ export default class RegisterForm extends Component {
         fetch("/api/users", {
             method: "post",
             body: JSON.stringify(formData),
-            headers: {},
+            headers: { "Content-Type": "application/json" },
         })
             .then((response) => response.json())
             .then((data) => {
@@ -43,30 +43,38 @@ export default class RegisterForm extends Component {
         return (
             <div>
                 <form onSubmit={this.onSubmit}>
-                    <input
-                        name="first_name"
-                        type="first_name"
-                        required
-                        placeholder="First Name"
-                    />
-                    <input
-                        name="last_name"
-                        type="last_name"
-                        required
-                        placeholder="last Name"
-                    />
-                    <input
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="Email"
-                    />
-                    <input
-                        name="password"
-                        type="password"
-                        required
-                        placeholder="Password"
-                    />
+                    <div>
+                        <input
+                            name="first_name"
+                            type="first_name"
+                            required
+                            placeholder="First Name"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            name="last_name"
+                            type="last_name"
+                            required
+                            placeholder="last Name"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            name="email"
+                            type="email"
+                            required
+                            placeholder="Email"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            name="password"
+                            type="password"
+                            required
+                            placeholder="Password"
+                        />
+                    </div>
                     <button>Register</button>
 
                     {this.state.error && <p>{this.state.error}</p>}
