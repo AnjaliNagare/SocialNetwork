@@ -2,7 +2,9 @@ import { Component } from "react";
 import ProfilePicture from "./profilePicture";
 import PictureModal from "./pictureModal";
 import Profile from "./profile";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import FindPeople from "./FindPeople";
+import OtherProfile from "./OtherProfile";
+import { BrowserRouter, Route, NavLink } from "react-router-dom";
 
 export default class App extends Component {
     constructor(props) {
@@ -61,7 +63,10 @@ export default class App extends Component {
             <BrowserRouter>
                 <section className="app">
                     <header>
-                        <Link to="/">Home</Link>
+                        <nav className="nav">
+                            <NavLink to="/">Home</NavLink>
+                            <NavLink to="/people">Find People</NavLink>
+                        </nav>
                     </header>
                     <section>
                         <Route path="/" exact>
@@ -83,6 +88,12 @@ export default class App extends Component {
                                 updateBio={this.updateBio}
                                 user={this.state.user}
                             />
+                        </Route>
+                        <Route path="/users/:user_id">
+                            <OtherProfile />
+                        </Route>
+                        <Route path="/people">
+                            <FindPeople />
                         </Route>
                     </section>
                 </section>

@@ -69,11 +69,35 @@ async function editBio(userBio, user_id) {
     return result.rows[0];
 }
 
+async function getRecentUsers({ limit }) {
+    const result = await db.query(
+        `SELECT * FROM users
+        ORDER BY id DESC
+        LIMIT $1`,
+        [limit]
+    );
+    return result.rows;
+}
+
+async function searchUsers({ val }) {
+    const result = await db.query(
+        `SELECT * FROM users
+        WHERE first_name ILIKE $1
+        OR last_name ILIKE $1
+        ORDER BY first_name
+        LIMIT 10`,
+        [val + "%"]
+    );
+    return result.rows[0];
+}
+
 module.exports = {
     createUser,
     getUserById,
     login,
     updateUserProfilePicture,
     editBio,
+    getRecentUsers,
+    searchUsers,
 };
 

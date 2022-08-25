@@ -33,6 +33,8 @@ const {
     login,
     updateUserProfilePicture,
     editBio,
+    searchUsers,
+    getRecentUsers,
 } = require("./db");
 
 app.get("/api/users/me", (request, response)=> {
@@ -44,6 +46,16 @@ app.get("/api/users/me", (request, response)=> {
         console.log(result);
         response.json(result);
     });
+});
+
+app.get('/api/users/:user_id', async(request, response) => {
+    if(request.params.user_id == request.session.user_id){
+        response.json({error: "This is the logged user"});
+        return;
+    }
+    const otherUser = await getUserById(request.params.user_id);
+    response.json(otherUser);
+    
 });
 
 app.post("/api/users", (request, response) => {
@@ -117,6 +129,16 @@ app.post("/api/bio", (request, response) => {
             response.statusCode(500).json({message: "error editing bio"});
         });
     
+});
+
+app.get("/api/users/recent", async (request, response) => {
+    const recentUsers = await getRecentUsers(request.query);
+    response.json(recentUsers);
+});
+
+app.get("/api/users/search", async (request, response) => {
+    const searchResults = await searchUsers(request.query);
+    response.json(searchResults);
 });
 
 app.get("*", function (req, res) {
