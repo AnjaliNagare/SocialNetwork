@@ -10,3 +10,10 @@ CREATE TABLE users (
     bio TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE friendships(
+  id SERIAL PRIMARY KEY,
+  sender_id INT REFERENCES users(id) NOT NULL,
+  receiver_id INT REFERENCES users(id) NOT NULL,
+  accepted BOOLEAN DEFAULT false
+);

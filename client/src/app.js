@@ -66,6 +66,7 @@ export default class App extends Component {
                         <nav className="nav">
                             <NavLink to="/">Home</NavLink>
                             <NavLink to="/people">Find People</NavLink>
+                            <NavLink to="/logout">Logout</NavLink>
                         </nav>
                     </header>
                     <section>

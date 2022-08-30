@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 import ProfilePicture from "./profilePicture";
+import FriendshipButton from "./friendshipButton";
 
 export default function OtherProfile() {
     const { user_id } = useParams();
@@ -18,7 +19,8 @@ export default function OtherProfile() {
                         return;
                     }
                     setUser(data);
-                }
+                },
+                [user_id]
             );
         // fetch the user info with the given user_id
         // update the user accordingly
@@ -27,14 +29,16 @@ export default function OtherProfile() {
         // see instructions above about how to use the history.replace method
     }, [user_id]);
 
-    return (<div className="other-profile">
-        <div>
-            <ProfilePicture
-                profile_picture_url={user.profile_picture_url}
-            />
-            <p key={user.id}>{user.first_name} {user.last_name}</p>
-            <p>{user.bio}</p>
+    return (
+        <div className="other-profile">
+            <div>
+                <ProfilePicture
+                    profile_picture_url={user.profile_picture_url}
+                />
+                <p>{user.first_name} {user.last_name}</p>
+                <p>{user.bio}</p>
+                <FriendshipButton  otherUserId={user_id}/>
+            </div>
         </div>
-    </div>
     );
 }
