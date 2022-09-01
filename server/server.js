@@ -169,7 +169,6 @@ app.get("/api/friendship-status/:id", (request, response) => {
             return;
         }
         if (
-            // friendship.accepted ||
             friendship.sender_id === request.session.user_id
         ) {
             response.json("cancel friend request");
@@ -188,7 +187,6 @@ app.get("/api/friendship-status/:id", (request, response) => {
 
 app.post("/api/friendship-action", (request, response) => {
     const senderId = request.session.user_id;
-    // const data = {...request.body, senderId: senderId };
     const { friendButtontext, otherUserId } = request.body;
     if (
         friendButtontext == "cancel friend request" ||
