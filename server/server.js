@@ -39,6 +39,7 @@ const {
     getFriendRequestStatus,
     acceptFriendRequest,
     deleteFriendship,
+    getFriendships,
 } = require("./db");
 
 app.get("/api/users/me", (request, response) => {
@@ -209,6 +210,11 @@ app.post("/api/friendship-action", (request, response) => {
             response.json("Unfriend")
         );
     }
+});
+
+app.get("/api/friendships", async (request, response) =>{
+    const friendList = await getFriendships(request.session.user_id);
+    response.json(friendList);
 });
 
 app.get("*", function (req, res) {

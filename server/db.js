@@ -138,6 +138,30 @@ function deleteFriendship(senderId, otherUserId) {
         .then((result) => result.rows[0]);
 }
 
+function getFriendships(user_id) {
+    return db
+        .query(
+            `
+    SELECT friendships.accepted,
+friendships.sender_id,
+friendships.receiver_id,
+friendships.id AS friendship_id,
+users.first_name, users.last_name, users.profile_picture_url
+FROM friendships
+JOIN users
+ON (
+    users.id = friendships.sender_id
+    AND friendships.receiver_id = $1)
+OR (
+    users.id = friendships.receiver_id
+    AND friendships.sender_id = $1
+    AND accepted = true)`,
+            [user_id]
+        )
+        .then((result) => result.rows);
+}
+
+
 module.exports = {
     createUser,
     getUserById,
@@ -150,5 +174,6 @@ module.exports = {
     getFriendRequestStatus,
     acceptFriendRequest,
     deleteFriendship,
+    getFriendships,
 };
 
