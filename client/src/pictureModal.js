@@ -20,15 +20,18 @@ export default function PictureModal({ onUpload, onCloseModalClick }) {
 
     return (
         <div className="modal">
-            <button onClick={onCloseModalClick}>X</button>
             <form onSubmit={onSubmit}>
                 <input
                     name="file"
                     type="file"
                     accept="image/*"
                     required
+            
                 ></input>
-                <button> Submit </button>
+                <button className="btn"> Submit </button>
+                <button onClick={onCloseModalClick} className="btn">
+                    Close
+                </button>
             </form>
         </div>
     );

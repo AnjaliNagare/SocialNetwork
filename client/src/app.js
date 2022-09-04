@@ -5,6 +5,7 @@ import Profile from "./profile";
 import FindPeople from "./FindPeople";
 import OtherProfile from "./OtherProfile";
 import Friends from "./friendNew";
+import Chat from "./chat";
 import { BrowserRouter, Route, NavLink } from "react-router-dom";
 
 export default class App extends Component {
@@ -64,15 +65,37 @@ export default class App extends Component {
             <BrowserRouter>
                 <section className="app">
                     <header>
-                        <nav className="nav">
-                            <NavLink to="/">Home</NavLink>
-                            <NavLink to="/people">Find People</NavLink>
-                            <NavLink to="/Friends">Friends</NavLink>
+                        <nav>
+                            <img src="/logo.png" className="logo" />
+
+                            <NavLink to="/" className="links">
+                                <div title="Home">
+                                    <img src="/home.png" className="icons" />
+                                </div>
+                            </NavLink>
+                            <NavLink to="/people" className="links">
+                                <div title="Find People">
+                                    <img
+                                        src="/findpeople.png"
+                                        className="icons"
+                                    />
+                                </div>
+                            </NavLink>
+                            <NavLink to="/Friends" className="links">
+                                <div title="Friends">
+                                    <img src="/friends.png" className="icons" />
+                                </div>
+                            </NavLink>
+                            <NavLink to="/chat" className="links">
+                                <div title="Chat">
+                                    <img src="/chat.png" className="icons" />
+                                </div>
+                            </NavLink>
                         </nav>
                     </header>
                     <section>
                         <Route path="/" exact>
-                            <div>
+                            <div className="profileDiv">
                                 <ProfilePicture
                                     onImageclick={this.onImageclick}
                                     profile_picture_url={
@@ -99,6 +122,9 @@ export default class App extends Component {
                         </Route>
                         <Route path="/Friends">
                             <Friends />
+                        </Route>
+                        <Route path="/chat">
+                            <Chat />
                         </Route>
                     </section>
                 </section>

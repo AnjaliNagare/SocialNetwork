@@ -65,7 +65,8 @@ export default function Friends() {
     return (
         <section className="friends">
             <h2>Friends</h2>
-            <section className="incoming-list">
+
+            <section className="incomingfrndlist">
                 <h3>Incoming requests</h3>
                 <FriendList friendships={incoming} onClick={onClick} />
             </section>

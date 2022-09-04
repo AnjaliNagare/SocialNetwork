@@ -60,15 +60,23 @@ export default class BioEditor extends Component {
         return (
             <div>
                 <p>{this.props.user.bio}</p>
-                <button onClick={this.onClick}>Edit Bio</button>
+                <button onClick={this.onClick} className="btn">
+                    Edit Bio
+                </button>
                 {this.state.showTextArea && (
                     <form>
-                        <textarea
+                        <textarea id="textarea"
                             onInput={this.handleBioChange}
                             defaultValue={this.props.user.bio}
                         ></textarea>
-                        <button onClick={this.editBio}>Save Bio</button>
-                        <button onClick={this.cancelEdit}>cancel</button>
+                        <div>
+                            <button onClick={this.editBio} className="btn">
+                                Save Bio
+                            </button>
+                            <button onClick={this.cancelEdit} className="btn">
+                                cancel
+                            </button>
+                        </div>
                     </form>
                 )}
             </div>

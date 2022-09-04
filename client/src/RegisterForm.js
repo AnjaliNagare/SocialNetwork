@@ -41,45 +41,53 @@ export default class RegisterForm extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="register">
                 <form onSubmit={this.onSubmit}>
-                    <div>
+                    <div className="inputfield">
                         <input
                             name="first_name"
                             type="first_name"
                             required
                             placeholder="First Name"
+                            size="32"
                         />
                     </div>
-                    <div>
+                    <div className="inputfield">
                         <input
                             name="last_name"
                             type="last_name"
                             required
                             placeholder="last Name"
+                            size="32"
                         />
                     </div>
-                    <div>
+                    <div className="inputfield">
                         <input
                             name="email"
                             type="email"
                             required
                             placeholder="Email"
+                            size="32"
                         />
                     </div>
-                    <div>
+                    <div className="inputfield">
                         <input
                             name="password"
                             type="password"
                             required
                             placeholder="Password"
+                            size="32"
                         />
                     </div>
-                    <button>Register</button>
+                    <div className="btn">
+                        <button>Register</button>
+                    </div>
 
                     {this.state.error && <p>{this.state.error}</p>}
                 </form>
-                <Link to="/login">Click here to Log in!</Link>
+                <Link to="/login" className="links">
+                    Click here to Log in!
+                </Link>
             </div>
         );
     }

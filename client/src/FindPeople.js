@@ -35,27 +35,29 @@ export default function FindPeople() {
         return !users.length ? (
             "No Results"
         ) : (
-            <ul>
+            <div className="recentUsers">
                 {users.map((user) => (
-                    <li key={user.id}>
+                    <div key={user.id}>
                         <Link to={`/users/${user.id}`}>
                             <ProfilePicture {...user} />
-                            {user.first_name} {user.last_name}
+                            <div>
+                                {user.first_name} {user.last_name}
+                            </div>
                         </Link>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         );
     }
 
     return (
-        <section className="find-people">
+        <section className="findPeople">
             <h2>Find People</h2>
-            <section className="recent-users">
+            <section>
                 <h3>Recent Users</h3>
                 <UserList users={recentUsers}></UserList>
             </section>
-            <section className="search-results">
+            <section className="searchResults">
                 <h3>Looking for someone in particular?</h3>
                 <p>
                     <input
@@ -64,9 +66,8 @@ export default function FindPeople() {
                         placeholder="Search for users..."
                     />
                 </p>
-                
+
                 <UserList users={searchResults} />
-             
             </section>
         </section>
     );

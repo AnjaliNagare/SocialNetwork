@@ -40,24 +40,34 @@ export default class Login extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="login">
                 <form onSubmit={this.onFormSubmit}>
-                    <input
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="Email"
-                    />
-                    <input
-                        name="password"
-                        type="password"
-                        required
-                        placeholder="Password"
-                    />
-                    <button>Log in</button>
+                    <div className="inputfield">
+                        <input
+                            name="email"
+                            type="email"
+                            required
+                            placeholder="Email"
+                            size="32"
+                        />
+                    </div>
+                    <div className="inputfield">
+                        <input
+                            name="password"
+                            type="password"
+                            required
+                            placeholder="Password"
+                            size="32"
+                        />
+                    </div>
+                    <div className="btn">
+                        <button>Login</button>
+                    </div>
                     {this.state.error && <p>{this.state.error}</p>}
                 </form>
-                <Link to="/">Click here to Register!</Link>
+                <Link to="/" className="links">
+                    Click here to Register!
+                </Link>
             </div>
         );
     }

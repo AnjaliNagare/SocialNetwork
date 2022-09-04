@@ -5,12 +5,12 @@ import Login from "./login";
 
 export default function Welcome() {
     return (
-        
-        <div className="welcome" id="welcome">
-            <h1>Welcome!</h1>
-            {/* <img src="/logo.png" /> */}
+        <div className="welcome">
+            <div id="heading">
+                <h1>Welcome!</h1>
+            </div>
+            <div id="image">{<img src="/logo.png" />}</div>
             <BrowserRouter>
-                
                 <Route exact path="/">
                     <div>
                         <RegisterForm />
@@ -20,10 +20,8 @@ export default function Welcome() {
                 <Route path="/login">
                     <div>
                         <Login />
-                        
                     </div>
                 </Route>
-                
             </BrowserRouter>
         </div>
     );
