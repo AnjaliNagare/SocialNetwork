@@ -38,9 +38,9 @@ export default function FindPeople() {
             <div className="recentUsers">
                 {users.map((user) => (
                     <div key={user.id}>
-                        <Link to={`/users/${user.id}`}>
+                        <Link to={`/users/${user.id}`} >
                             <ProfilePicture {...user} />
-                            <div>
+                            <div className="textName">
                                 {user.first_name} {user.last_name}
                             </div>
                         </Link>

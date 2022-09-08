@@ -22,16 +22,12 @@ export default function OtherProfile() {
                 },
                 [user_id]
             );
-        // fetch the user info with the given user_id
-        // update the user accordingly
-        // if the user is not found (or is the logged user)
-        // redirect to the homepage
-        // see instructions above about how to use the history.replace method
+        
     }, [user_id]);
 
     return (
-        <div className="other-profile">
-            <div>
+        <div className="otherProfile">
+            <div className="profile">
                 <ProfilePicture
                     profile_picture_url={user.profile_picture_url}
                 />

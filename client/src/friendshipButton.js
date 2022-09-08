@@ -27,6 +27,6 @@ export default function FriendshipButton({ otherUserId }) {
             });
     }
     return (
-        <button onClick={onFriendshipButtonClick}>{friendButtontext}</button>
+        <button onClick={onFriendshipButtonClick} >{friendButtontext}</button>
     );
 }

@@ -79,8 +79,8 @@ export default class RegisterForm extends Component {
                             size="32"
                         />
                     </div>
-                    <div className="btn">
-                        <button>Register</button>
+                    <div className="formbtn" >
+                        <button className="btn">Register</button>
                     </div>
 
                     {this.state.error && <p>{this.state.error}</p>}

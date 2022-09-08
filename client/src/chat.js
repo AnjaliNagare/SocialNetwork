@@ -61,28 +61,37 @@ export default function Chat() {
             <ul className="messages">
                 {chatMessages.map((chatMessage) => (
                     <li key={chatMessage.message_id}>
-                        <div>
-                            <p>{chatMessage.first_name}:</p>
-
-                            <p>
-                                {chatMessage.message}{" "}{chatMessage.created_at}
-                            </p>
-                            <img
-                                className="chat-img"
-                                src={chatMessage.profile_picture_url}
-                            />
+                        <div className="chatBox">
+                            <div className="chatimg">
+                                <img
+                                    className="chat-img"
+                                    src={chatMessage.profile_picture_url}
+                                />
+                            </div>
+                            <div className="chatmsg">
+                                <div>
+                                    <strong>
+                                        {chatMessage.first_name}{" "}
+                                        {chatMessage.last_name}
+                                    </strong>
+                                </div>
+                                <div id="msgcontent">
+                                    {chatMessage.message}
+                                    {/* {chatMessage.created_at} */}
+                                </div>
+                            </div>
                         </div>
                     </li>
                 ))}
             </ul>
             <form onSubmit={onSubmit}>
-                <textarea
+                <textarea id="msgarea"
                     name="message"
                     rows={1}
                     placeholder="Write your message..."
                     required
                 ></textarea>
-                <button>Send</button>
+                <button className="btn">Send</button>
             </form>
         </section>
     );

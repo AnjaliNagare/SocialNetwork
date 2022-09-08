@@ -14,7 +14,7 @@ export default function FriendList({ friendships, onClick }) {
                         <img src={f.profile_picture_url}></img>
                     </a>
                     <div className="friendbtn">
-                        <button onClick={() => onClick(f)}>
+                        <button onClick={() => onClick(f)} className="btn">
                             {f.accepted ? "Unfriend" : "Accept friend request"}
                         </button>
                     </div>
